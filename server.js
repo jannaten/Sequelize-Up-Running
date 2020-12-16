@@ -6,12 +6,17 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const userRoute = require("./routes/user-route");
-const profileRoute = require("./routes/profile-route");
-const postRoute = require("./routes/post-route");
-app.use("/api/users", userRoute);
-app.use("/api/profile", profileRoute);
-app.use("/api/post", postRoute);
+const productRoute = require("./routes/product-route");
+const localizeRoute = require("./routes/localize-route");
+const organizationRoute = require("./routes/organization-route");
+const localizationRoute = require("./routes/localization-route");
+const localizedValueRoute = require("./routes/localizedValue-rotue");
+
+app.use("/api/product", productRoute);
+app.use("/api/localize", localizeRoute);
+app.use("/api/organization", organizationRoute);
+app.use("/api/localization", localizationRoute);
+app.use("/api/localizedValue", localizedValueRoute);
 
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
