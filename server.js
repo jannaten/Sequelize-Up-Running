@@ -11,12 +11,14 @@ const localizeRoute = require("./routes/localize-route");
 const organizationRoute = require("./routes/organization-route");
 const localizationRoute = require("./routes/localization-route");
 const localizedValueRoute = require("./routes/localizedValue-rotue");
+const organizationProductRoute = require("./routes/organizationProduct-route");
 
 app.use("/api/product", productRoute);
 app.use("/api/localize", localizeRoute);
 app.use("/api/organization", organizationRoute);
 app.use("/api/localization", localizationRoute);
 app.use("/api/localizedValue", localizedValueRoute);
+app.use("/api/organizationProduct", organizationProductRoute);
 
 db.sequelize.sync().then(() => {
   app.listen(PORT, () => {

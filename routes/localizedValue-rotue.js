@@ -12,7 +12,14 @@ router.post("/new", (req, res) => {
 
 router.get("/all", (req, res) => {
   db.LocalizedValue.findAll({
-    // include: [db.Localization],
+    include: [db.Localization],
+  }).then((allLocalizedValue) => res.send(allLocalizedValue));
+});
+
+router.get("/find/:id", (req, res) => {
+  db.LocalizedValue.findAll({
+    where: { id: req.params.id },
+    include: [db.Localization],
   }).then((allLocalizedValue) => res.send(allLocalizedValue));
 });
 
