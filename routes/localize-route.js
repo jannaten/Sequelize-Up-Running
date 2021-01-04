@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
+const { QueryTypes } = require("sequelize");
 
 router.post("/new", (req, res) => {
   db.Localize.create({
@@ -18,12 +19,24 @@ router.get("/all", (req, res) => {
     .then((allLocalize) => res.send(allLocalize))
     .catch((e) => console.log(e.message));
 });
+router.get("/a", (req, res) => {
+  db.sequelize
+    .query(
+      "select o.id as OrganizationId, o.*, p.id as ProductId, p.* from Organizations o left join OrganizationProducts op on o.id = op.OrganizationId left join Products p on p.id = op.ProductId"
+    )
+    .then((allLocalize) => res.send(allLocalize))
+    .catch((e) => console.log(e.message));
+});
 
 router.get("/localizedValues/:orgId/:proId", (req, res) => {
   const { orgId, proId } = req.params;
   db.Localize.findAll({
+    where: { ProductId: proId },
     include: [
-      { model: db.LocalizedValue, include: [{ model: db.Localization }] },
+      {
+        model: db.LocalizedValue,
+        include: [{ where: { OrganizationId: orgId }, model: db.Localization }],
+      },
     ],
   })
     .then((allLocalize) => {
@@ -65,7 +78,8 @@ router.get("/localizedValues/:orgId/:proId", (req, res) => {
         localizedValues.values = obj;
         arr.push(localizedValues);
       }
-      res.send(arr);
+      const newArr = arr.filter((el) => el.organizationId !== undefined);
+      res.send(newArr);
     })
     .catch((e) => console.log(e.message));
 });
