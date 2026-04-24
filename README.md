@@ -2,9 +2,9 @@
 
 [![CI](https://github.com/your-org/sequelize-ts-boilerplate/actions/workflows/ci.yml/badge.svg)](https://github.com/your-org/sequelize-ts-boilerplate/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Node: >=20](https://img.shields.io/badge/Node-%3E%3D20-brightgreen.svg)](https://nodejs.org)
+[![Node: >=22](https://img.shields.io/badge/Node-%3E%3D22-brightgreen.svg)](https://nodejs.org)
 
-Production-grade REST API starter built with **Node.js 20**, **TypeScript 6**, **Sequelize v6**, and **Express 5**. Zero-compromise architecture — strict types, validated environment config, structured logging, rate limiting, global error handling, Docker, and CI out of the box.
+Production-grade REST API starter built with **Node.js 22**, **TypeScript 6**, **Sequelize v6**, and **Express 5**. Zero-compromise architecture — strict types, validated environment config, structured logging, rate limiting, global error handling, Docker, and CI out of the box.
 
 ---
 
@@ -12,7 +12,7 @@ Production-grade REST API starter built with **Node.js 20**, **TypeScript 6**, *
 
 | Layer | Technology |
 |---|---|
-| Runtime | Node.js 20 LTS |
+| Runtime | Node.js 22 LTS |
 | Language | TypeScript 6 (strict) |
 | Web framework | Express 5 |
 | ORM | Sequelize 6 (PostgreSQL / SQLite) |
@@ -27,7 +27,7 @@ Production-grade REST API starter built with **Node.js 20**, **TypeScript 6**, *
 
 ## Prerequisites
 
-- **Node.js** ≥ 20 ([nvm](https://github.com/nvm-sh/nvm) recommended)
+- **Node.js** ≥ 22 ([nvm](https://github.com/nvm-sh/nvm) recommended)
 - **PostgreSQL** 15+ (or use Docker Compose)
 - **npm** ≥ 10
 

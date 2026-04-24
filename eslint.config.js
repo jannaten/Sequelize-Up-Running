@@ -1,20 +1,13 @@
-'use strict';
+import tseslint from 'typescript-eslint';
+import prettierConfig from 'eslint-config-prettier';
 
-const tseslint = require('typescript-eslint');
-const prettierConfig = require('eslint-config-prettier');
-
-module.exports = tseslint.config(
-  // Ignored paths (replaces top-level ignorePatterns)
+export default tseslint.config(
   {
     ignores: ['dist/**', 'node_modules/**', 'jest.config.ts', 'migrations/**', 'seeders/**'],
   },
-
-  // @typescript-eslint recommended for all TS files
-  ...tseslint.configs.recommended,
-
-  // Base custom rules
   {
     files: ['**/*.ts'],
+    extends: [tseslint.configs.recommended],
     rules: {
       'no-console': 'warn',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
@@ -22,15 +15,13 @@ module.exports = tseslint.config(
       '@typescript-eslint/no-explicit-any': 'error',
     },
   },
-
-  // Type-aware rules for src/ only
   {
     files: ['src/**/*.ts'],
-    extends: [...tseslint.configs.recommendedTypeChecked],
+    extends: [tseslint.configs.recommendedTypeChecked],
     languageOptions: {
       parserOptions: {
         project: './tsconfig.json',
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
@@ -41,8 +32,6 @@ module.exports = tseslint.config(
       'no-console': 'warn',
     },
   },
-
-  // Relax rules for tests
   {
     files: ['tests/**/*.ts'],
     rules: {
@@ -51,7 +40,5 @@ module.exports = tseslint.config(
       'no-console': 'off',
     },
   },
-
-  // Prettier must be last — disables formatting rules that conflict
   prettierConfig,
 );
